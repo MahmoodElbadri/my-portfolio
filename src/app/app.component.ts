@@ -59,7 +59,7 @@ export class AppComponent {
 
   projects = [
     {
-      title: 'Film Dashboard & API',
+      title: 'Film Dashboard frontend application with Angular 18',
       description: 'A full-stack movie management system with .NET 8 Web API and Angular 18. Features include JWT Auth, Role-based access, and real-time data visualization.',
       techStack: ['.NET 8', 'Angular', 'SQL Server', 'JWT', 'CSS', 'Bootstrap', 'Type Script'],
       liveUrl: 'https://film-app.vercel.app',
@@ -67,12 +67,12 @@ export class AppComponent {
       image: 'assets/film-project.png' // FIXED: Path should be relative to src/assets
     },
     {
-      title: 'todo-app',
-      description: 'A full-stack todo app with .NET 8 MVC contains multi features like JWT Auth, Role-based access, and real-time data visualization.',
-      techStack: ['.NET', 'MVC', 'SQL Server', 'Java Script', 'JWT', 'Bootstrap'],
+      title: 'Film Dashboard backend application with .NET 9',
+      description: 'An Api to manage movies with .NET 9 Web API and SQL Server. Features include JWT Auth, Role-based access, and real-time data visualization.',
+      techStack: ['.NET', 'MVC', 'SQL Server', 'JWT', 'Bootstrap'],
       liveUrl: '#',
-      repoUrl: 'https://github.com/MahmoodElbadri/TodoMvcApp',
-      image: 'assets/todo.png'
+      repoUrl: 'https://github.com/MahmoodElbadri/Film',
+      image: 'assets/film-backend.png'
     }
   ];
 
