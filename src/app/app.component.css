@@ -1,0 +1,33 @@
+/* --- Fix Mobile Text Visibility --- */
+
+body {
+    background-color: #1a1a2a !important; 
+    color: #ffffff; 
+}
+
+.text-gradient {
+    color: #6ee7b7 !important; 
+    
+    @supports (-webkit-background-clip: text) {
+        background: linear-gradient(to right, #6ee7b7, #3b82f6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent !important;
+    }
+}
+
+.text-muted, .text-secondary {
+    color: #cbd5e1 !important; 
+}
+
+.card-glass, .glass {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+}
