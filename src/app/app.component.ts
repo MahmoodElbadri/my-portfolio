@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -59,10 +59,18 @@ export class AppComponent {
 
   projects = [
     {
+      title: 'Address Book',
+      description: 'A full-stack address book implemented as a part of hiring process at Tamweely Micofinance Co.',
+      techStack: ['.NET 9', 'Angular', 'SQL Server', 'JWT', 'SCSS', 'Bootstrap', 'Type Script'],
+      liveUrl: 'http://mahmoodelbadri-001-site1.site4future.com/',
+      repoUrl: 'https://github.com/MahmoodElbadri/Tamweely.Client',
+      image: 'assets/tamweely-project.png'
+    },
+    {
       title: 'Film Dashboard frontend application with Angular 18',
       description: 'A full-stack movie management system with .NET 8 Web API and Angular 18. Features include JWT Auth, Role-based access, and real-time data visualization.',
       techStack: ['.NET 8', 'Angular', 'SQL Server', 'JWT', 'CSS', 'Bootstrap', 'Type Script'],
-      liveUrl: 'https://film-app.vercel.app',
+      liveUrl: null,
       repoUrl: 'https://github.com/MahmoodElbadri/Film.Frontend',
       image: 'assets/film-project.png' // FIXED: Path should be relative to src/assets
     },
@@ -70,7 +78,7 @@ export class AppComponent {
       title: 'Film Dashboard backend application with .NET 9',
       description: 'An Api to manage movies with .NET 9 Web API and SQL Server. Features include JWT Auth, Role-based access, and real-time data visualization.',
       techStack: ['.NET', 'MVC', 'SQL Server', 'JWT', 'Bootstrap'],
-      liveUrl: '#',
+      liveUrl: null,
       repoUrl: 'https://github.com/MahmoodElbadri/Film',
       image: 'assets/film-backend.png'
     }

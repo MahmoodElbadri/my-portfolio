@@ -97,9 +97,11 @@
               </div>
               <p class="text-muted mb-4 flex-grow-1">{{ proj.description }}</p>
               <div class="d-flex gap-2 mt-auto">
-                <!-- <a [href]="proj.liveUrl" target="_blank" class="btn btn-primary btn-sm flex-grow-1">
-                  🚀 Live Demo
-                </a> -->
+                @if(proj.liveUrl){
+                  <a [href]="proj.liveUrl" target="_blank" class="btn btn-outline-warning btn-sm flex-grow-1">
+                    🚀 Live Demo
+                  </a>
+                }
                 <a [href]="proj.repoUrl" target="_blank" class="btn btn-outline-secondary btn-sm flex-grow-1">
                   💻 GitHub
                 </a>
