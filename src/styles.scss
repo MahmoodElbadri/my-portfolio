@@ -44,14 +44,14 @@ body {
   cursor: none;
 }
 
-/* لما الماوس يقف على لينك، الهالة تكبر */
- a:hover ~ app-custom-cursor .cursor-outline,
- button:hover ~ app-custom-cursor .cursor-outline {
-   width: 80px;
-   height: 80px;
-   background-color: rgba(59, 130, 246, 0.1);
-   border-color: transparent;
-}
+// /* لما الماوس يقف على لينك، الهالة تكبر */
+//  a:hover ~ app-custom-cursor .cursor-outline,
+//  button:hover ~ app-custom-cursor .cursor-outline {
+//    width: 80px;
+//    height: 80px;
+//    background-color: rgba(59, 130, 246, 0.1);
+//    border-color: transparent;
+// }
 
 
 @import 'swiper/css';
