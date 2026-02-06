@@ -13,11 +13,33 @@
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin-bottom: 20px; /* مساحة للـ Pagination في الموبايل */
+  min-height: 500px; 
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-10px);
     border-color: #3b82f6;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Add to your existing projects.component.scss */
+swiper-container {
+  width: 100%;
+  height: auto;
+  padding: 20px 0 40px; // Extra space for pagination
+  
+  ::ng-deep {
+    .swiper-slide {
+      display: flex;
+      align-items: stretch;
+      height: auto;
+    }
+    
+    .swiper-pagination {
+      bottom: 0;
+    }
   }
 }
 

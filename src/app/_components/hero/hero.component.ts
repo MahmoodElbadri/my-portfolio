@@ -37,7 +37,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   stats = [
     { value: '1+', label: 'Years Experience', icon: 'bi-briefcase' }, // Updated based on GitHub info
     { value: '4+', label: 'Projects Built', icon: 'bi-code-slash' }, // Updated based on GitHub info
-    { value: '100%', label: 'Code Quality', icon: 'bi-shield-check' }
+    { value: '80%', label: 'Code Quality', icon: 'bi-shield-check' }
   ];
 
   // Mouse position for parallax effect

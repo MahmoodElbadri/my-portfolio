@@ -48,7 +48,7 @@ export class ContactsComponent {
     },
     {
       name: 'Email',
-      url: 'mailto:mahmoud@example.com',
+      url: 'mailto:mahmoud.elbadry357@gmail.com',
       icon: 'bi-envelope-fill',
       color: '#ea4335',
       hoverColor: '#ff6b6b'

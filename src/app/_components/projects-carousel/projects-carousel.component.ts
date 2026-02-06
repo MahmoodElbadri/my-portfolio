@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal, afterNextRender, Injector } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 
 register();
@@ -12,8 +12,11 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProjectsCarouselComponent {
-  constructor() {
-    register();
+  constructor(private injector: Injector) {
+    afterNextRender(() => {
+      // Initialize Swiper after view is rendered
+      this.initSwiper();
+    }, { injector: this.injector });
   }
 
   // Enhanced projects with gradient placeholders and icons
@@ -67,6 +70,13 @@ export class ProjectsCarouselComponent {
       year: '2024'
     }
   ]);
+
+  initSwiper() {
+    const swiperEl = document.querySelector('swiper-container') as HTMLElement & { initialize: () => void };
+    if (swiperEl && !swiperEl.classList.contains('swiper-initialized')) {
+      swiperEl.initialize();
+    }
+  }
 
   // Handle image error - show gradient placeholder
   onImageError(event: Event, project: any) {
