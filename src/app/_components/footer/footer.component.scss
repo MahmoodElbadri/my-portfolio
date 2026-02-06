@@ -30,3 +30,58 @@
 .text-muted {
   color: #64748b !important;
 }
+
+/* footer.component.scss */
+
+.scroll-top-fixed {
+  position: fixed;
+  bottom: 40px; /* مسافة من تحت */
+  right: 40px;  /* مسافة من اليمين */
+  z-index: 9999; /* عشان يفضل فوق الكيرسر وكل السكاشن */
+  animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-scroll-top {
+  width: 55px;
+  height: 55px;
+  background: rgba(15, 23, 42, 0.7); /* خلفية غامقة شفافة */
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  border-radius: 50%;
+  color: #3b82f6;
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5);
+  }
+}
+
+/* انيميشن الدخول من اليمين */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* الحلقة النابضة اللي عملناها لسه موجودة */
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: pulse-animation 2s infinite;
+}

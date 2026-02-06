@@ -1,5 +1,13 @@
 <footer class="footer-section py-5">
   <div class="container">
+    @if (showScrollBtn()) {
+    <div class="scroll-top-fixed">
+      <button (click)="scrollToTop()" class="btn-scroll-top" title="Back to Top">
+        <i class="bi bi-arrow-up-short"></i>
+        <div class="pulse-ring"></div>
+      </button>
+    </div>
+  }
     <div class="row align-items-center">
       <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
         <h4 class="text-white fw-bold mb-2">

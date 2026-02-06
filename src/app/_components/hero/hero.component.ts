@@ -11,7 +11,7 @@ interface Skill {
   selector: 'app-hero',
   standalone: true,
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.scss',
+  styleUrls: ['./hero.component.scss'], // Fixed: Changed from styleUrl to styleUrls
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroComponent implements OnInit, OnDestroy {
@@ -35,9 +35,9 @@ export class HeroComponent implements OnInit, OnDestroy {
 
   // Stats
   stats = [
-    { value: '3+', label: 'Years Experience', icon: 'bi-briefcase' },
-    { value: '15+', label: 'Projects Built', icon: 'bi-code-slash' },
-    { value: '99%', label: 'Code Quality', icon: 'bi-shield-check' }
+    { value: '1+', label: 'Years Experience', icon: 'bi-briefcase' }, // Updated based on GitHub info
+    { value: '4+', label: 'Projects Built', icon: 'bi-code-slash' }, // Updated based on GitHub info
+    { value: '100%', label: 'Code Quality', icon: 'bi-shield-check' }
   ];
 
   // Mouse position for parallax effect
@@ -75,10 +75,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   downloadCV() {
-    // Implement CV download logic
-    const link = document.createElement('a');
-    link.href = 'assets/cv/mahmoud-salah-cv.pdf';
-    link.download = 'Mahmoud_Salah_CV.pdf';
-    link.click();
+    // For now just open email client since no CV exists
+    window.open('mailto:mahmoud.elbadry357@gmail.com?subject=CV Request&body=Hi Mahmoud, I would like to see your CV.', '_blank');
   }
 }
