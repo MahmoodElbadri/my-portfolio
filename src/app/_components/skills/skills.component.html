@@ -1,23 +1,18 @@
 <section class="skills-section" id="skills">
-  
-  <!-- Animated Background -->
-  <div class="skills-background">
+  <!-- Animated Background Elements -->
+  <div class="background-elements">
     <div class="floating-shape shape-1"></div>
     <div class="floating-shape shape-2"></div>
     <div class="floating-shape shape-3"></div>
   </div>
 
   <div class="container">
-    
     <!-- Section Header -->
     <div class="section-header text-center">
       <span class="section-badge">Expertise</span>
-      <h2 class="section-title">
-        Skills & <span class="highlight">Technologies</span>
-      </h2>
+      <h2 class="section-title">Skills & <span class="highlight">Technologies</span></h2>
       <p class="section-description">
-        A comprehensive overview of my technical proficiency across the full development stack,
-        backed by years of hands-on experience and a <strong class="text-primary">Quality-First</strong> mindset.
+        Quality-focused development across the full stack.
       </p>
     </div>
 
@@ -25,7 +20,11 @@
     <div class="stats-overview">
       @for (stat of stats; track stat.label) {
         <div class="stat-card">
-          <div class="stat-icon">
+          <div class="stat-icon" [style.background]="stat.icon === 'bi-calendar-check' ? 
+            'linear-gradient(135deg, #3b82f6, #8b5cf6)' : 
+            stat.icon === 'bi-award' ? 
+            'linear-gradient(135deg, #f59e0b, #fbbf24)' : 
+            'linear-gradient(135deg, #10b981, #34d399)'">
             <i [class]="'bi ' + stat.icon"></i>
           </div>
           <div class="stat-value">{{ stat.value }}</div>
@@ -34,84 +33,89 @@
       }
     </div>
 
-    <!-- Skill Categories Grid -->
-    <div class="skills-grid">
-      @for (category of skillCategories; track category.title; let i = $index) {
-        <div class="skill-category-card" [style.animation-delay]="(i * 0.15) + 's'">
-          
-          <!-- Category Header -->
-          <div class="category-header" [style.background]="category.gradient">
-            <div class="category-icon">
-              <i [class]="'bi ' + category.icon"></i>
-            </div>
-            <div class="category-info">
-              <h3 class="category-title">{{ category.title }}</h3>
-              <p class="category-description">{{ category.description }}</p>
-            </div>
-          </div>
-
-          <!-- Skills List -->
-          <div class="skills-list">
-            @for (skill of category.skills; track skill.name) {
-              <div class="skill-item">
-                
-                <!-- Skill Header -->
-                <div class="skill-header">
-                  <div class="skill-name">
-                    <i [class]="'bi ' + skill.icon" [style.color]="skill.color"></i>
-                    <span>{{ skill.name }}</span>
-                  </div>
-                  <div class="skill-percentage">
-                    {{ getSkillLevel(skill.name).toFixed(0) }}%
-                  </div>
+    <!-- Skills Carousel -->
+    <div class="skills-carousel-wrapper">
+      <swiper-container
+        class="skills-swiper"
+        slides-per-view="1"
+        space-between="30"
+        grab-cursor="true"
+        centered-slides="true"
+        loop="true"
+        navigation="true"
+        pagination="true"
+        autoplay='{"delay": 5000, "disableOnInteraction": false}'
+        breakpoints='{
+          "768": {"slidesPerView": 1},
+          "1024": {"slidesPerView": 2}
+        }'
+        style="--swiper-navigation-color: #3b82f6; --swiper-pagination-color: #3b82f6;">
+        
+        @for (category of skillCategories; track category.title; let i = $index) {
+          <swiper-slide>
+            <div class="skill-category-card">
+              <div class="category-header" [style.background]="category.gradient">
+                <div class="category-icon">
+                  <i [class]="'bi ' + category.icon"></i>
                 </div>
-
-                <!-- Progress Bar -->
-                <div class="skill-progress-container">
-                  <div 
-                    class="skill-progress-bar"
-                    [style.width]="getSkillLevel(skill.name) + '%'"
-                    [style.background]="skill.color">
-                    <div class="progress-glow"></div>
-                  </div>
+                <div class="category-info">
+                  <h3 class="category-title">{{ category.title }}</h3>
+                  <p class="category-description">{{ category.description }}</p>
                 </div>
-
               </div>
-            }
-          </div>
 
-        </div>
-      }
+              <div class="skills-list">
+                @for (skill of category.skills; track skill.name) {
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <div class="skill-name">
+                        <i [class]="'bi ' + skill.icon" [style.color]="skill.color"></i>
+                        <span>{{ skill.name }}</span>
+                      </div>
+                      <div class="skill-percentage">{{ getSkillLevel(skill.name).toFixed(0) }}%</div>
+                    </div>
+                    <div class="skill-progress-container">
+                      <div 
+                        class="skill-progress-bar" 
+                        [style.width]="getSkillLevel(skill.name) + '%'"
+                        [style.background]="skill.color"
+                        [style.boxShadow]="'0 0 20px ' + skill.color + '40'">
+                        <div class="progress-glow"></div>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </swiper-slide>
+        }
+      </swiper-container>
     </div>
 
-    <!-- Tools & Technologies Showcase -->
+    <!-- Tools Section -->
     <div class="tools-section">
-      <h3 class="tools-title">
-        <i class="bi bi-tools"></i>
-        Tools & Technologies I Use Daily
-      </h3>
-      
+      <h3 class="tools-title">My Daily Stack</h3>
       <div class="tools-grid">
         @for (tool of tools; track tool.name) {
-          <div class="tool-card">
+          <div class="tool-card" [style.borderColor]="tool.color">
             <div class="tool-icon" [style.color]="tool.color">
               <i [class]="'bi ' + tool.icon"></i>
             </div>
-            <span class="tool-name">{{ tool.name }}</span>
+            <div class="tool-name">{{ tool.name }}</div>
           </div>
         }
       </div>
     </div>
 
-    <!-- Call to Action -->
+    <!-- CTA Section -->
     <div class="skills-cta">
       <div class="cta-content">
         <h3 class="cta-title">
           <i class="bi bi-rocket-takeoff"></i>
-          Ready to bring these skills to your project?
+          Ready to Build Something Amazing?
         </h3>
         <p class="cta-text">
-          Let's collaborate and build something amazing together.
+          Let's collaborate on your next project and create something extraordinary together.
         </p>
         <a href="#contact" class="btn-cta">
           <span>Get In Touch</span>
@@ -119,20 +123,5 @@
         </a>
       </div>
     </div>
-
   </div>
-
-  <!-- Decorative Elements -->
-  <div class="decorative-elements">
-    <div class="code-block block-1">
-      <code>const skills = "expert";</code>
-    </div>
-    <div class="code-block block-2">
-      <code>quality: true</code>
-    </div>
-    <div class="code-block block-3">
-      <code>// Always learning</code>
-    </div>
-  </div>
-
 </section>

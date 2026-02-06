@@ -1,4 +1,4 @@
-import { Component, signal, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, OnInit, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Skill {
@@ -23,7 +23,8 @@ interface SkillCategory {
   imports: [CommonModule],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SkillsComponent implements OnInit {
   
