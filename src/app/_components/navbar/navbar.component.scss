@@ -1,0 +1,99 @@
+.navbar {
+  transition: all 0.4s ease;
+  padding: 1.5rem 0;
+  background: transparent;
+}
+
+/* التأثير لما اليوزر يعمل سكرول */
+.navbar-scrolled {
+  background: rgba(15, 23, 42, 0.8); /* Dark background */
+  backdrop-filter: blur(12px); /* تأثير الزجاج */
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.navbar-brand {
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navbar-brand span { color: #3b82f6; } /* لون مميز لـ DEV */
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin: 0 15px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-link:hover { color: #3b82f6 !important; }
+
+.contact-btn {
+  background: #3b82f6;
+  color: white !important;
+  border-radius: 8px;
+  padding: 8px 20px !important;
+}
+
+/* navbar.component.css */
+
+.contact-btn-pro {
+  position: relative;
+  display: inline-block;
+  padding: 10px 28px !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  text-decoration: none;
+  background: linear-gradient(90deg, #3b82f6, #2dd4bf); /* تدرج متناسق مع الـ Hero */
+  border-radius: 50px; /* شكل بيضاوي "Premium" */
+  border: none;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  cursor: pointer;
+}
+
+/* حركة الـ Glow عند الـ Hover */
+.contact-btn-pro:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
+  filter: brightness(1.1);
+}
+
+/* إضافة "لمعة" بتتحرك (Reflection Effect) */
+.contact-btn-pro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: all 0.6s;
+}
+
+.contact-btn-pro:hover::before {
+  left: 100%;
+}
+
+/* تعديل الـ Navbar Brand عشان تليق مع الزرار الجديد */
+.navbar-brand span {
+  background: linear-gradient(90deg, #3b82f6, #2dd4bf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}

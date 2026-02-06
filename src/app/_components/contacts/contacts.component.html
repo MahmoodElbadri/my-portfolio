@@ -1,0 +1,190 @@
+<section class="contact-section" id="contact">
+  <!-- Animated Background Particles -->
+  <div class="particles-container">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header text-center">
+      <span class="section-badge">Let's Connect</span>
+      <h2 class="section-title">
+        Get In <span class="highlight">Touch</span>
+      </h2>
+      <p class="section-description">
+        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+        <br>
+        As a developer with a <strong class="text-primary">Quality Assurance</strong> background,
+        I ensure every connection is as robust as my code.
+      </p>
+    </div>
+
+    <div class="row g-4 mt-4">
+      <!-- Contact Info Cards -->
+      <div class="col-12">
+        <div class="row g-3 mb-5">
+          @for (info of contactInfo; track info.title) {
+            <div class="col-md-4">
+              <div class="info-card" [style.background]="info.gradient">
+                <div class="info-icon">
+                  <i [class]="'bi ' + info.icon"></i>
+                </div>
+                <h4 class="info-title">{{ info.title }}</h4>
+                <p class="info-value">{{ info.value }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-lg-7 mx-auto">
+        <div class="form-container glass-morphism">
+          <!-- Success Message -->
+          @if (submitSuccess()) {
+            <div class="success-message">
+              <div class="success-icon">
+                <i class="bi bi-check-circle-fill"></i>
+              </div>
+              <h3>Message Sent Successfully! 🎉</h3>
+              <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
+            </div>
+          }
+
+          <!-- Error Message -->
+          @if (submitError()) {
+            <div class="error-message">
+              <i class="bi bi-exclamation-triangle-fill"></i>
+              <p>Oops! Something went wrong. Please try again or email me directly.</p>
+            </div>
+          }
+
+          <!-- Form -->
+          <form 
+            name="contact" 
+            method="POST" 
+            data-netlify="true"
+            (submit)="onSubmit($event)"
+            class="contact-form"
+            [class.form-hidden]="submitSuccess()">
+            
+            <input type="hidden" name="form-name" value="contact" />
+
+            <div class="row g-4">
+              <!-- Name Input -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">
+                    <i class="bi bi-person-fill"></i>
+                    Full Name
+                  </label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    [(ngModel)]="formData().name"
+                    class="form-control" 
+                    placeholder="John Doe"
+                    (focus)="onInputFocus($event)"
+                    (blur)="onInputBlur($event)"
+                    required>
+                  <span class="input-border"></span>
+                </div>
+              </div>
+
+              <!-- Email Input -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">
+                    <i class="bi bi-envelope-fill"></i>
+                    Email Address
+                  </label>
+                  <input 
+                    type="email" 
+                    name="email"
+                    [(ngModel)]="formData().email"
+                    class="form-control" 
+                    placeholder="john@example.com"
+                    (focus)="onInputFocus($event)"
+                    (blur)="onInputBlur($event)"
+                    required>
+                  <span class="input-border"></span>
+                </div>
+              </div>
+
+              <!-- Message Input -->
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label">
+                    <i class="bi bi-chat-dots-fill"></i>
+                    Your Message
+                  </label>
+                  <textarea 
+                    name="message"
+                    [(ngModel)]="formData().message"
+                    class="form-control" 
+                    rows="6" 
+                    placeholder="Tell me about your project or idea..."
+                    (focus)="onInputFocus($event)"
+                    (blur)="onInputBlur($event)"
+                    required></textarea>
+                  <span class="input-border"></span>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="col-12">
+                <button 
+                  type="submit" 
+                  class="btn-submit"
+                  [disabled]="isSubmitting()">
+                  @if (isSubmitting()) {
+                    <span class="spinner"></span>
+                    <span>Sending...</span>
+                  } @else {
+                    <span>Send Message</span>
+                    <i class="bi bi-send-fill"></i>
+                  }
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="social-section">
+      <div class="divider">
+        <span>Or connect with me on</span>
+      </div>
+
+      <div class="social-links">
+        @for (social of socialLinks; track social.name) {
+          <a 
+            [href]="social.url" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            [attr.data-tooltip]="social.name">
+            <div class="social-icon">
+              <i [class]="'bi ' + social.icon"></i>
+            </div>
+            <span class="social-name">{{ social.name }}</span>
+          </a>
+        }
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="footer-note text-center">
+      <p>
+        <i class="bi bi-shield-check"></i>
+        Your information is safe and will never be shared with third parties.
+      </p>
+    </div>
+  </div>
+</section>

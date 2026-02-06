@@ -1,0 +1,32 @@
+/* footer.component.css */
+.footer-section {
+  background-color: #0f172a; /* نفس لون الـ Hero والـ Sections */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.social-link {
+  font-size: 1.5rem;
+  color: #94a3b8;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.social-link:hover {
+  color: #3b82f6;
+  transform: translateY(-3px);
+}
+
+.text-primary {
+  color: #3b82f6 !important;
+}
+
+.bg-dark-blue {
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  font-size: 0.7rem;
+}
+
+.text-muted {
+  color: #64748b !important;
+}

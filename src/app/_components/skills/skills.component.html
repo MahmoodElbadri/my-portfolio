@@ -1,0 +1,138 @@
+<section class="skills-section" id="skills">
+  
+  <!-- Animated Background -->
+  <div class="skills-background">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div class="section-header text-center">
+      <span class="section-badge">Expertise</span>
+      <h2 class="section-title">
+        Skills & <span class="highlight">Technologies</span>
+      </h2>
+      <p class="section-description">
+        A comprehensive overview of my technical proficiency across the full development stack,
+        backed by years of hands-on experience and a <strong class="text-primary">Quality-First</strong> mindset.
+      </p>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="stats-overview">
+      @for (stat of stats; track stat.label) {
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i [class]="'bi ' + stat.icon"></i>
+          </div>
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- Skill Categories Grid -->
+    <div class="skills-grid">
+      @for (category of skillCategories; track category.title; let i = $index) {
+        <div class="skill-category-card" [style.animation-delay]="(i * 0.15) + 's'">
+          
+          <!-- Category Header -->
+          <div class="category-header" [style.background]="category.gradient">
+            <div class="category-icon">
+              <i [class]="'bi ' + category.icon"></i>
+            </div>
+            <div class="category-info">
+              <h3 class="category-title">{{ category.title }}</h3>
+              <p class="category-description">{{ category.description }}</p>
+            </div>
+          </div>
+
+          <!-- Skills List -->
+          <div class="skills-list">
+            @for (skill of category.skills; track skill.name) {
+              <div class="skill-item">
+                
+                <!-- Skill Header -->
+                <div class="skill-header">
+                  <div class="skill-name">
+                    <i [class]="'bi ' + skill.icon" [style.color]="skill.color"></i>
+                    <span>{{ skill.name }}</span>
+                  </div>
+                  <div class="skill-percentage">
+                    {{ getSkillLevel(skill.name).toFixed(0) }}%
+                  </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="skill-progress-container">
+                  <div 
+                    class="skill-progress-bar"
+                    [style.width]="getSkillLevel(skill.name) + '%'"
+                    [style.background]="skill.color">
+                    <div class="progress-glow"></div>
+                  </div>
+                </div>
+
+              </div>
+            }
+          </div>
+
+        </div>
+      }
+    </div>
+
+    <!-- Tools & Technologies Showcase -->
+    <div class="tools-section">
+      <h3 class="tools-title">
+        <i class="bi bi-tools"></i>
+        Tools & Technologies I Use Daily
+      </h3>
+      
+      <div class="tools-grid">
+        @for (tool of tools; track tool.name) {
+          <div class="tool-card">
+            <div class="tool-icon" [style.color]="tool.color">
+              <i [class]="'bi ' + tool.icon"></i>
+            </div>
+            <span class="tool-name">{{ tool.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="skills-cta">
+      <div class="cta-content">
+        <h3 class="cta-title">
+          <i class="bi bi-rocket-takeoff"></i>
+          Ready to bring these skills to your project?
+        </h3>
+        <p class="cta-text">
+          Let's collaborate and build something amazing together.
+        </p>
+        <a href="#contact" class="btn-cta">
+          <span>Get In Touch</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Decorative Elements -->
+  <div class="decorative-elements">
+    <div class="code-block block-1">
+      <code>const skills = "expert";</code>
+    </div>
+    <div class="code-block block-2">
+      <code>quality: true</code>
+    </div>
+    <div class="code-block block-3">
+      <code>// Always learning</code>
+    </div>
+  </div>
+
+</section>
