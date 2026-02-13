@@ -16,14 +16,14 @@ interface SocialLink {
   imports: [CommonModule, FormsModule],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactsComponent {
   // Form state
   formData = signal({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
 
   isSubmitting = signal(false);
@@ -37,22 +37,22 @@ export class ContactsComponent {
       url: 'https://github.com/MahmoodElbadri',
       icon: 'bi-github',
       color: '#333',
-      hoverColor: '#6e5494'
+      hoverColor: '#6e5494',
     },
     {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/mahmoodelbadri/',
       icon: 'bi-linkedin',
       color: '#0077b5',
-      hoverColor: '#00a0dc'
+      hoverColor: '#00a0dc',
     },
     {
       name: 'Email',
-      url: 'mailto:mahmoud.elbadry357@gmail.com',
+      url: 'mailto:mahmoud.elbadry357@gmail.com?subject=Professional%20Inquiry%20-%20CV%20Request&body=Dear%20Mahmoud%2C%0D%0A%0D%0AI%20hope%20this%20email%20finds%20you%20well.%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20technical%20expertise.%20I%20would%20like%20to%20request%20a%20copy%20of%20your%20CV%20to%20explore%20potential%20collaboration%20opportunities.%0D%0A%0D%0ALooking%20forward%20to%20hearing%20from%20you.%0D%0A%0D%0ABest%20regards%2C%0D%0A%5BName%5D%0D%0A%5BCompany%2FOrganization%5D',
       icon: 'bi-envelope-fill',
       color: '#ea4335',
-      hoverColor: '#ff6b6b'
-    }
+      hoverColor: '#ff6b6b',
+    },
   ];
 
   // Contact info cards
@@ -61,25 +61,25 @@ export class ContactsComponent {
       icon: 'bi-geo-alt-fill',
       title: 'Location',
       value: 'Cairo, Egypt',
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     },
     {
       icon: 'bi-clock-fill',
       title: 'Response Time',
       value: 'Within 24 hours',
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
     },
     {
       icon: 'bi-code-slash',
       title: 'Availability',
       value: 'Open to opportunities',
-      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
-    }
+      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    },
   ];
 
   async onSubmit(event: Event) {
     event.preventDefault();
-    
+
     this.isSubmitting.set(true);
     this.submitError.set(false);
 
@@ -91,15 +91,14 @@ export class ContactsComponent {
       await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString()
+        body: new URLSearchParams(formData as any).toString(),
       });
 
       this.submitSuccess.set(true);
       this.formData.set({ name: '', email: '', message: '' });
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => this.submitSuccess.set(false), 5000);
-
     } catch (error) {
       this.submitError.set(true);
       setTimeout(() => this.submitError.set(false), 5000);
