@@ -6,7 +6,6 @@
   justify-content: center;
   overflow: hidden;
   padding: 120px 0;
-  /* Background is handled globally by .global-aurora-bg */
 }
 
 .hero-content {
@@ -16,9 +15,54 @@
 }
 
 .hero-main {
-  max-width: 900px;
-  margin: 0 auto;
+  width: 100%;
   animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+  animation: float 6s ease-in-out infinite;
+
+  @media (min-width: 992px) {
+    width: 350px;
+    height: 350px;
+  }
+
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--bg-color);
+    position: relative;
+    z-index: 2;
+  }
+
+  .photo-glow {
+    position: absolute;
+    inset: -15px;
+    background: inherit;
+    border-radius: 50%;
+    filter: blur(25px);
+    opacity: 0.6;
+    z-index: 1;
+    animation: pulse-glow 4s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes pulse-glow {
+  0% { opacity: 0.4; filter: blur(20px); }
+  100% { opacity: 0.8; filter: blur(35px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 @keyframes fadeUp {
@@ -42,7 +86,7 @@
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 900;
   color: var(--text-primary);
   line-height: 1.1;
@@ -53,7 +97,6 @@
 .role-container {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .hero-subtitle {
@@ -78,7 +121,6 @@
 
 .hero-actions {
   display: flex;
-  justify-content: center;
   gap: 20px;
 }
 

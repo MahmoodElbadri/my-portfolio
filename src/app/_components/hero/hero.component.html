@@ -1,57 +1,63 @@
 <div class="hero-content">
-  <div class="container text-center">
+  <div class="container">
     
-    <div class="hero-main">
-      <!-- Minimalist Status Badge -->
-      <div class="glass-badge mb-4">
-        <span class="status-dot"></span> Available for new projects and challenges!
+    <div class="hero-main row align-items-center text-center text-lg-start">
+      
+      <!-- Left Column: Photo -->
+      <div class="col-lg-5 mb-5 mb-lg-0 d-flex justify-content-center justify-content-lg-end pe-lg-5">
+        <div class="profile-photo-container">
+          <img src="assets/me2.jpg" alt="Mahmood Elbadri" class="profile-photo" onerror="this.src='assets/placeholder.png'">
+          <div class="photo-glow"></div>
+        </div>
       </div>
 
-      <!-- Massive Clean Title -->
-      <h1 class="hero-title">
-        Hi, I'm <span class="text-gradient-accent">Mahmood Elbadri</span> 👋
-      </h1>
+      <!-- Right Column: Content -->
+      <div class="col-lg-7 ps-lg-4">
+        
+        <!-- Minimalist Status Badge -->
+        <div class="glass-badge mb-4">
+          <span class="status-dot"></span> Available for new projects
+        </div>
 
-      <!-- Elegant Subtitle with Typing Animation -->
-      <div class="role-container mt-4 mb-5">
-        <h2 class="hero-subtitle">
-          I'm a <span class="typing-text text-gradient">{{ currentRoleText() }}</span><span class="cursor">|</span>
-        </h2>
-      </div>
+        <!-- Massive Clean Title -->
+        <h1 class="hero-title">
+          Hi, I'm <br class="d-none d-lg-block">
+          <span class="text-gradient-accent">Mahmood Elbadri</span> 👋
+        </h1>
 
-      <p class="hero-description mx-auto mb-5">
-        I bridge the gap between <strong style="color: var(--text-primary);">Software Quality</strong> and Modern Development.
-        Building clean, efficient systems with .NET, Angular, and TypeScript.
-      </p>
+        <!-- Elegant Subtitle with Typing Animation -->
+        <div class="role-container mt-4 mb-4 justify-content-center justify-content-lg-start">
+          <h2 class="hero-subtitle">
+            I'm a <span class="typing-text text-gradient">{{ currentRoleText() }}</span><span class="cursor">|</span>
+          </h2>
+        </div>
 
-      <!-- Glass Actions -->
-      <div class="hero-actions">
-        <a class="glass-button primary-action" (click)="scrollToSection('projects')">
-          View Projects <i class="bi bi-arrow-down-short"></i>
-        </a>
-        <a class="glass-button secondary-action" (click)="scrollToSection('contact')">
-          Contact Me
-        </a>
+        <p class="hero-description mx-auto mx-lg-0 mb-5">
+          I bridge the gap between <strong style="color: var(--text-primary);">Software Quality</strong> and Modern Development.
+          Building clean, efficient systems with .NET, Angular, and TypeScript.
+        </p>
+
+        <!-- Glass Actions -->
+        <div class="hero-actions justify-content-center justify-content-lg-start">
+          <a class="glass-button primary-action" (click)="scrollToSection('projects')">
+            View Projects <i class="bi bi-arrow-down-short"></i>
+          </a>
+          <a class="glass-button secondary-action" (click)="scrollToSection('contact')">
+            Contact Me
+          </a>
+        </div>
+
       </div>
       
     </div>
     
   </div>
 
-
-
   <!-- Decorative Elements -->
-
   <div class="hero-decoration">
-
     <div class="decoration-circle circle-1"></div>
-
     <div class="decoration-circle circle-2"></div>
-
     <div class="decoration-circle circle-3"></div>
-
   </div>
 
-
-
-<!-- </section> -->
+</div>
