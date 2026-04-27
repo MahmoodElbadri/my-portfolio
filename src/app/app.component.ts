@@ -13,7 +13,7 @@ import { CursorComponent } from "./_components/cursor/cursor.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, HeroComponent, ProjectsCarouselComponent, SkillsComponent, ContactsComponent, FooterComponent, CursorComponent],
+  imports: [CommonModule, NavbarComponent, HeroComponent, ProjectsCarouselComponent, SkillsComponent, ContactsComponent, FooterComponent, CursorComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'] // Ensure this matches your file name (.scss or .css)
 })

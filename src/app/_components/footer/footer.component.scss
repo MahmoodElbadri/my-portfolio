@@ -1,87 +1,75 @@
-/* footer.component.css */
 .footer-section {
-  background-color: #0f172a; /* نفس لون الـ Hero والـ Sections */
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--glass-border);
+  background: transparent;
+  padding: 60px 0 40px;
 }
 
 .social-link {
   font-size: 1.5rem;
-  color: #94a3b8;
-  transition: all 0.3s ease;
+  color: var(--text-secondary);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-block;
-}
-
-.social-link:hover {
-  color: #3b82f6;
-  transform: translateY(-3px);
+  
+  &:hover {
+    color: var(--text-primary);
+    transform: translateY(-4px) scale(1.1);
+  }
 }
 
 .text-primary {
-  color: #3b82f6 !important;
+  color: var(--accent-1) !important;
 }
 
-.bg-dark-blue {
-  background-color: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  font-size: 0.7rem;
+.text-white {
+  color: var(--text-primary) !important;
 }
 
 .text-muted {
-  color: #64748b !important;
+  color: var(--text-secondary) !important;
 }
-
-/* footer.component.scss */
 
 .scroll-top-fixed {
   position: fixed;
-  bottom: 40px; /* مسافة من تحت */
-  right: 40px;  /* مسافة من اليمين */
-  z-index: 9999; /* عشان يفضل فوق الكيرسر وكل السكاشن */
-  animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+  animation: slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-scroll-top {
-  width: 55px;
-  height: 55px;
-  background: rgba(15, 23, 42, 0.7); /* خلفية غامقة شفافة */
-  backdrop-filter: blur(12px);
-  border: 2px solid rgba(59, 130, 246, 0.4);
+  width: 50px;
+  height: 50px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
   border-radius: 50%;
-  color: #3b82f6;
-  font-size: 2.2rem;
+  color: var(--text-primary);
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
 
   &:hover {
-    background: #3b82f6;
-    color: white;
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--glass-glow);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 }
 
-/* انيميشن الدخول من اليمين */
-@keyframes slideInRight {
+@keyframes slideInUp {
   from {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
-}
-
-/* الحلقة النابضة اللي عملناها لسه موجودة */
-.pulse-ring {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #3b82f6;
-  border-radius: 50%;
-  animation: pulse-animation 2s infinite;
 }

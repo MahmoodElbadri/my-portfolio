@@ -1,107 +1,92 @@
 <section class="contact-section" id="contact">
-  <!-- Animated Background Particles -->
-  <div class="particles-container">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-  </div>
-
-  <div class="container">
-    <!-- Section Header -->
-    <div class="section-header text-center">
-      <span class="section-badge">Let's Connect</span>
-      <h2 class="section-title">
-        Get In <span class="highlight">Touch</span>
+  <div class="container px-4 px-lg-5">
+    
+    <div class="section-header text-center mb-5">
+      <div class="glass-badge mb-3">Let's Connect</div>
+      <h2 class="section-title text-gradient">
+        Get In Touch
       </h2>
-      <p class="section-description">
+      <p class="section-description mx-auto mt-3">
         I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-        <br>
-        As a developer with a <strong class="text-primary">Quality Assurance</strong> background,
-        I ensure every connection is as robust as my code.
       </p>
     </div>
 
-    <div class="row g-4 mt-4">
+    <div class="row g-5 mt-4 justify-content-center">
+      
       <!-- Contact Info Cards -->
-      <div class="col-12">
-        <div class="row g-3 mb-5">
-          @for (info of contactInfo; track info.title) {
-          <div class="col-md-4">
-            <div class="info-card" [style.background]="info.gradient">
-              <div class="info-icon">
-                <i [class]="'bi ' + info.icon"></i>
-              </div>
-              <h4 class="info-title">{{ info.title }}</h4>
-              <p class="info-value">{{ info.value }}</p>
+      <div class="col-lg-4 d-flex flex-column gap-4">
+        @for (info of contactInfo; track info.title) {
+          <div class="info-card glass-panel d-flex align-items-center p-4">
+            <div class="info-icon me-4">
+              <i [class]="'bi ' + info.icon"></i>
+            </div>
+            <div>
+              <h4 class="info-title mb-1">{{ info.title }}</h4>
+              <p class="info-value mb-0 text-secondary">{{ info.value }}</p>
             </div>
           </div>
-          }
-        </div>
+        }
       </div>
 
       <!-- Contact Form -->
-      <div class="col-lg-7 mx-auto">
-        <div class="form-container glass-morphism">
+      <div class="col-lg-7">
+        <div class="form-container glass-panel p-5">
+          
           <!-- Success Message -->
           @if (submitSuccess()) {
-          <div class="success-message">
-            <div class="success-icon">
-              <i class="bi bi-check-circle-fill"></i>
+            <div class="success-message text-center">
+              <div class="success-icon mb-3">
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+              </div>
+              <h3 class="text-white">Message Sent! 🎉</h3>
+              <p class="text-secondary">Thank you for reaching out. I'll get back to you within 24 hours.</p>
             </div>
-            <h3>Message Sent Successfully! 🎉</h3>
-            <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
-          </div>
           }
 
           <!-- Error Message -->
           @if (submitError()) {
-          <div class="error-message">
-            <i class="bi bi-exclamation-triangle-fill"></i>
-            <p>Oops! Something went wrong. Please try again or email me directly.</p>
-          </div>
+            <div class="error-message mb-4 p-3 rounded" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);">
+              <p class="text-danger mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> Oops! Something went wrong. Please try again.</p>
+            </div>
           }
 
           <!-- Form -->
           <form name="contact" #contactForm="ngForm" (submit)="onSubmit($event)" data-netlify="true"
-            class="contact-form" [class.form-hidden]="submitSuccess()">
+            class="contact-form" [class.d-none]="submitSuccess()">
 
             <input type="hidden" name="form-name" value="contact" />
 
             <div class="row g-4">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="form-label"><i class="bi bi-person-fill"></i> Full Name</label>
-                  <input type="text" name="name" [(ngModel)]="formData().name" class="form-control"
-                    placeholder="Mahmood Salah" required> <span class="input-border"></span>
+                  <label class="form-label text-secondary mb-2"><i class="bi bi-person-fill me-2"></i> Full Name</label>
+                  <input type="text" name="name" [(ngModel)]="formData().name" class="form-control custom-input"
+                    placeholder="e.g. John Doe" required>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="form-label"><i class="bi bi-envelope-fill"></i> Email Address</label>
-                  <input type="email" name="email" [(ngModel)]="formData().email" class="form-control"
-                    placeholder="mahmoud@example.com" required email> <span class="input-border"></span>
+                  <label class="form-label text-secondary mb-2"><i class="bi bi-envelope-fill me-2"></i> Email Address</label>
+                  <input type="email" name="email" [(ngModel)]="formData().email" class="form-control custom-input"
+                    placeholder="john@example.com" required email>
                 </div>
               </div>
 
               <div class="col-12">
                 <div class="form-group">
-                  <label class="form-label"><i class="bi bi-chat-dots-fill"></i> Your Message</label>
-                  <textarea name="message" [(ngModel)]="formData().message" class="form-control" rows="6"
-                    placeholder="Tell me about your project..." required></textarea> <span class="input-border"></span>
+                  <label class="form-label text-secondary mb-2"><i class="bi bi-chat-dots-fill me-2"></i> Your Message</label>
+                  <textarea name="message" [(ngModel)]="formData().message" class="form-control custom-input" rows="5"
+                    placeholder="Tell me about your project..." required></textarea>
                 </div>
               </div>
 
-              <div class="col-12">
-                <button type="submit" class="btn-submit" [disabled]="contactForm.invalid || isSubmitting()"> @if
-                  (isSubmitting()) {
-                  <span class="spinner"></span>
-                  <span>Sending...</span>
+              <div class="col-12 mt-5">
+                <button type="submit" class="glass-button w-100" [disabled]="contactForm.invalid || isSubmitting()" style="padding: 16px;"> 
+                  @if (isSubmitting()) {
+                    <span class="spinner-border spinner-border-sm me-2"></span> Sending...
                   } @else {
-                  <span>Send Message</span>
-                  <i class="bi bi-send-fill"></i>
+                    <span>Send Message</span> <i class="bi bi-send-fill ms-2"></i>
                   }
                 </button>
               </div>
@@ -112,30 +97,18 @@
     </div>
 
     <!-- Social Links -->
-    <div class="social-section">
-      <div class="divider">
-        <span>Or connect with me on</span>
-      </div>
-
-      <div class="social-links">
+    <div class="social-section mt-5 pt-5 text-center">
+      <p class="text-secondary mb-4">Or connect with me on</p>
+      <div class="d-flex justify-content-center gap-4">
         @for (social of socialLinks; track social.name) {
-        <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-link"
-          [attr.data-tooltip]="social.name">
-          <div class="social-icon">
-            <i [class]="'bi ' + social.icon"></i>
-          </div>
-          <span class="social-name">{{ social.name }}</span>
-        </a>
+          <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-link" [title]="social.name">
+            <div class="social-icon-wrapper glass-panel d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border-radius: 50%;">
+              <i [class]="'bi ' + social.icon" style="font-size: 1.5rem; color: var(--text-primary);"></i>
+            </div>
+          </a>
         }
       </div>
     </div>
 
-    <!-- Footer Note -->
-    <div class="footer-note text-center">
-      <p>
-        <i class="bi bi-shield-check"></i>
-        Your information is safe and will never be shared with third parties.
-      </p>
-    </div>
   </div>
 </section>

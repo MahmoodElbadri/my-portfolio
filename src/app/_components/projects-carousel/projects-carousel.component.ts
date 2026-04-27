@@ -1,90 +1,113 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal, afterNextRender, Injector } from '@angular/core';
-import { register } from 'swiper/element/bundle';
+import { 
+  ChangeDetectionStrategy, 
+  Component
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-register();
+export interface ProjectLink {
+  label: string;
+  url: string;
+  icon: string;
+  disabled?: boolean;
+}
+
+export interface ProjectItem {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  icon: string;
+  tags: string[];
+  links: ProjectLink[];
+}
 
 @Component({
   selector: 'app-projects-carousel',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './projects-carousel.component.html',
   styleUrl: './projects-carousel.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectsCarouselComponent {
-  constructor(private injector: Injector) {
-    afterNextRender(() => {
-      // Initialize Swiper after view is rendered
-      this.initSwiper();
-    }, { injector: this.injector });
-  }
-
-  // Enhanced projects with gradient placeholders and icons
-  projects = signal([
+  
+  projects: ProjectItem[] = [
     {
-      title: 'Travel Journal',
-      description: 'A sophisticated travel tracking system implementing the CQRS pattern with MediatR. Features high-level server-side validation using FluentValidation and complex data relationships via Entity Framework Core.',
-      tags: ['.NET 10', 'CQRS', 'MediatR', 'EF Core'],
-      image: 'assets/projects/travel-journal.png',
-      fallbackIcon: 'bi-airplane',
-      gradientFrom: '#667eea',
-      gradientTo: '#764ba2',
-      githubUrl: 'https://github.com/MahmoodElbadri/Travel-Journal',
-      liveUrl: null,
-      year: '2024'
+      id: '01',
+      title: 'Clinic.Api (Doctor Booking)',
+      category: 'Backend API',
+      description: 'A robust, scalable RESTful API built with .NET Core. Features include secure JWT auth, role-based access control, appointment management, and real-time notifications via SignalR.',
+      image: 'assets/api.png',
+      icon: 'bi-heart-pulse',
+      tags: ['.NET Core', 'EF Core', 'SignalR', 'JWT'],
+      links: [
+        { label: 'GitHub', url: 'https://github.com/MahmoodElbadri/Clinic.Api', icon: 'bi-github' }
+      ]
     },
     {
-      title: 'Library Management System',
-      description: 'A full-scale system for managing library resources and user workflows. Focused on clean database design and efficient CRUD operations to handle lending and inventory management seamlessly.',
-      tags: ['C#', '.NET', 'SQL Server', 'Web API'],
-      image: 'assets/projects/library-system.png',
-      fallbackIcon: 'bi-book',
-      gradientFrom: '#f093fb',
-      gradientTo: '#f5576c',
-      githubUrl: 'https://github.com/MahmoodElbadri/LibrarySystem',
-      liveUrl: null,
-      year: '2024'
+      id: '02',
+      title: 'CareSync Frontend',
+      category: 'Web App',
+      description: 'A modern, responsive SPA built with Angular. Serves as the interactive dashboard for doctors to manage schedules and receive real-time WebSockets updates.',
+      image: 'assets/clicnic-front.png',
+      icon: 'bi-laptop',
+      tags: ['Angular', 'TypeScript', 'SCSS', 'RxJS'],
+      links: [
+        { label: 'GitHub', url: 'https://github.com/MahmoodElbadri/CareSync-Frontend', icon: 'bi-github' }
+      ]
     },
     {
-      title: 'Mt3m Restaurant Platform',
-      description: 'An Egyptian-styled restaurant management and food ordering application. Built with Angular 18 to provide a smooth, responsive user experience for menu browsing and order processing.',
-      tags: ['Angular 18', 'Bootstrap', 'TypeScript', 'RxJS'],
-      image: 'assets/projects/mt3m.png',
-      fallbackIcon: 'bi-shop',
-      gradientFrom: '#4facfe',
-      gradientTo: '#00f2fe',
-      githubUrl: 'https://github.com/MahmoodElbadri/Mt3m',
-      liveUrl: null,
-      year: '2024'
+      id: '03',
+      title: 'Expense Tracker API',
+      category: 'Backend API',
+      description: 'A secure RESTful API built with .NET 8 following Clean Architecture. Manages finances, tracks expenses, and automates recurring bills using Hangfire background jobs.',
+      image: 'assets/api.png',
+      icon: 'bi-wallet2',
+      tags: ['.NET 8', 'Clean Arch', 'Hangfire', 'Identity'],
+      links: [
+        { label: 'GitHub', url: 'https://github.com/MahmoodElbadri/ExpensesTracker', icon: 'bi-github' }
+      ]
     },
     {
-      title: 'AnyWare Technical Task',
-      description: 'A targeted technical solution demonstrating agility in full-stack development. Showcases clean code principles and the ability to bridge Angular frontends with robust .NET backends under rigorous requirements.',
-      tags: ['Full Stack', 'Angular', '.NET Core', 'REST API'],
-      image: 'assets/projects/anyware.png',
-      fallbackIcon: 'bi-code-slash',
-      gradientFrom: '#fa709a',
-      gradientTo: '#fee140',
-      githubUrl: 'https://github.com/MahmoodElbadri/AnyWareTask',
-      liveUrl: null,
-      year: '2024'
+      id: '04',
+      title: 'Expense Tracker Client',
+      category: 'Web App',
+      description: 'A fast, reactive SPA built with Angular 17/18 using Signals for state management. Features an interactive financial dashboard, smart interceptors, and a Glassmorphism UI.',
+      image: 'assets/EX-TR.png',
+      icon: 'bi-graph-up-arrow',
+      tags: ['Angular 18', 'Signals', 'Glass'],
+      links: [
+        { label: 'GitHub', url: 'https://github.com/MahmoodElbadri/ExpensesTracker-Client/tree/master', icon: 'bi-github' }
+      ]
+    },
+    {
+      id: '05',
+      title: 'CineTrack Analytics',
+      category: 'Web App',
+      description: 'A dynamic movie tracking app consuming the TMDB API. Provides rich analytics on viewing habits, personalized watchlists, and a comprehensive search engine. since the camera was invented 😎😎😎',
+      image: 'assets/cine-tr.png',
+      icon: 'bi-film',
+      tags: ['Angular', 'TMDB API', 'Analytics', 'RxJS'],
+      links: [
+        { label: 'GitHub', url: 'https://github.com/MahmoodElbadri/Cinema-Tracking', icon: 'bi-github' }
+      ]
+    },
+    {
+      id: '06',
+      title: 'Premium POS System',
+      category: 'Enterprise',
+      description: 'A commercial-grade Point of Sale (POS) system built for a private client. Features advanced inventory management, real-time sales tracking, and a responsive touch interface.',
+      image: 'assets/pos.png',
+      icon: 'bi-shop',
+      tags: ['Angular', '.NET', 'Enterprise', 'POS'],
+      links: [
+        { label: 'Private', url: '', icon: 'bi-lock-fill', disabled: true }
+      ]
     }
-  ]);
+  ];
 
-  initSwiper() {
-    const swiperEl = document.querySelector('swiper-container') as HTMLElement & { initialize: () => void };
-    if (swiperEl && !swiperEl.classList.contains('swiper-initialized')) {
-      swiperEl.initialize();
-    }
-  }
-
-  // Handle image error - show gradient placeholder
-  onImageError(event: Event, project: any) {
-    const img = event.target as HTMLImageElement;
-    img.style.display = 'none';
-    const parent = img.parentElement;
-    if (parent) {
-      parent.classList.add('show-fallback');
-    }
+  trackByProjectId(index: number, project: ProjectItem): string {
+    return project.id;
   }
 }

@@ -1,272 +1,40 @@
-<section class="hero-section" id="home" (mousemove)="onMouseMove($event)">
-
-
-  <!-- Animated Background Grid -->
-
-  <div class="hero-background">
-
-    <div class="grid-background"></div>
-
-    <div class="gradient-orb orb-1"></div>
-
-    <div class="gradient-orb orb-2"></div>
-
-    <div class="gradient-orb orb-3"></div>
-
-  </div>
-
-
-
-  <!-- Floating Code Snippets -->
-
-  <div class="code-snippets">
-
-    <div class="code-snippet snippet-1">
-
-      <code>&lt;Developer /&gt;</code>
-
-    </div>
-
-    <div class="code-snippet snippet-2">
-
-      <code>&#123; quality: "first" &#125;</code>
-
-    </div>
-
-    <div class="code-snippet snippet-3">
-
-      <code>async build() =&gt;</code>
-
-    </div>
-
-    <div class="code-snippet snippet-4">
-
-      <code>[TestMethod]</code>
-
-    </div>
-
-  </div>
-
-
-
-  <div class="container">
-
-    <div class="hero-content">
-
-
-      <!-- Main Content -->
-
-      <div class="text-center hero-main">
-
-
-        <!-- Status Badge -->
-
-        <div class="status-badge">
-
-          <span class="status-dot"></span>
-
-          Available for opportunities
-
-        </div>
-
-
-
-        <!-- Main Heading with Animated Gradient -->
-
-        <h1 class="hero-title">
-
-          Hi, I'm
-
-          <span class="name-gradient">Mahmoud Salah</span>
-
-          <span class="wave">👋</span>
-
-        </h1>
-
-
-
-        <!-- Rotating Role -->
-
-        <div class="role-container">
-
-          <h2 class="hero-subtitle">
-
-            <span class="role-label">I'm a</span>
-
-            <span class="role-text">{{ currentRole() }}</span>
-
-            <span class="cursor-blink">|</span>
-
-          </h2>
-
-        </div>
-
-
-
-        <!-- Description -->
-
-        <p class="hero-description">
-
-          I bridge the gap between <strong class="highlight">Software Quality</strong> and
-
-          <strong class="highlight">Modern Development</strong>.
-
-          <br>
-
-          Building clean, efficient systems with
-
-          <span class="tech-badge">.NET</span>,
-
-          <span class="tech-badge">Angular</span>, and
-
-          <span class="tech-badge">TypeScript</span>.
-
-        </p>
-
-
-
-        <!-- Tech Stack Icons -->
-
-        <div class="tech-stack-showcase">
-
-          @for (tech of techStack; track tech.name) {
-
-          <div class="tech-item" [style.--tech-color]="tech.color" [attr.data-tooltip]="tech.name">
-
-            <i [class]="'bi ' + tech.icon"></i>
-
-          </div>
-
-          }
-
-        </div>
-
-
-
-        <!-- CTA Buttons -->
-
-        <div class="hero-actions">
-
-          <!-- <button (click)="scrollTo('projects')" class="btn btn-primary">
-
-            <span>View My Work</span>
-
-            <i class="bi bi-arrow-right"></i>
-
-          </button> -->
-
-
-          <button (click)="scrollTo('contact')" class="btn btn-secondary">
-
-            <span>Let's Talk</span>
-
-            <i class="bi bi-chat-dots"></i>
-
-          </button>
-
-
-
-          <a href="mailto:mahmoud.elbadry357@gmail.com?subject=Professional%20Inquiry%20-%20CV%20Request&body=Dear%20Mahmoud%2C%0D%0A%0D%0AI%20hope%20this%20email%20finds%20you%20well.%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20technical%20expertise.%20I%20would%20like%20to%20request%20a%20copy%20of%20your%20CV%20to%20explore%20potential%20collaboration%20opportunities.%0D%0A%0D%0ALooking%20forward%20to%20hearing%20from%20you.%0D%0A%0D%0ABest%20regards%2C%0D%0A%5BName%5D%0D%0A%5BCompany%2FOrganization%5D"
-            class="btn btn-outline">
-
-            <i class="bi bi-envelope"></i>
-
-            <span>Request my CV</span>
-
-          </a>
-
-        </div>
-
-
-
-        <!-- Stats Counter -->
-
-        <div class="stats-container">
-
-          @for (stat of stats; track stat.label) {
-
-          <div class="stat-item">
-
-            <div class="stat-icon">
-
-              <i [class]="'bi ' + stat.icon"></i>
-
-            </div>
-
-            <div class="stat-content">
-
-              <div class="stat-value">{{ stat.value }}</div>
-
-              <div class="stat-label">{{ stat.label }}</div>
-
-            </div>
-
-          </div>
-
-          }
-
-        </div>
-
+<div class="hero-content">
+  <div class="container text-center">
+    
+    <div class="hero-main">
+      <!-- Minimalist Status Badge -->
+      <div class="glass-badge mb-4">
+        <span class="status-dot"></span> Available for new projects
       </div>
 
+      <!-- Massive Clean Title -->
+      <h1 class="hero-title">
+        Hi, I'm <span class="text-gradient-accent">Mahmood Elbadri</span> 👋
+      </h1>
 
-
-      <!-- Social Links Vertical Bar -->
-
-      <div class="social-sidebar">
-
-        <div class="social-line"></div>
-
-        <a href="https://github.com/MahmoodElbadri" target="_blank" rel="noopener noreferrer"
-          class="social-icon-vertical" data-tooltip="GitHub">
-
-          <i class="bi bi-github"></i>
-
-        </a>
-
-        <a href="https://www.linkedin.com/in/mahmoodelbadri/" target="_blank" rel="noopener noreferrer"
-          class="social-icon-vertical" data-tooltip="LinkedIn">
-
-          <i class="bi bi-linkedin"></i>
-
-        </a>
-
-        <a href="mailto:mahmoud.elbadry357@gmail.com?subject=Professional%20Inquiry%20-%20CV%20Request&body=Dear%20Mahmoud%2C%0D%0A%0D%0AI%20hope%20this%20email%20finds%20you%20well.%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20technical%20expertise.%20I%20would%20like%20to%20request%20a%20copy%20of%20your%20CV%20to%20explore%20potential%20collaboration%20opportunities.%0D%0A%0D%0ALooking%20forward%20to%20hearing%20from%20you.%0D%0A%0D%0ABest%20regards%2C%0D%0A%5BName%5D%0D%0A%5BCompany%2FOrganization%5D"
-         class="social-icon-vertical" data-tooltip="Email">
-
-          <i class="bi bi-envelope"></i>
-
-        </a>
-
-        <a href="https://wa.me/+201099565685" target="_blank" rel="noopener noreferrer" class="social-icon-vertical"
-          data-tooltip="Whatsapp">
-
-          <i class="bi bi-whatsapp"></i>
-
-        </a>
-
-        <div class="social-line"></div>
-
+      <!-- Elegant Subtitle with Typing Animation -->
+      <div class="role-container mt-4 mb-5">
+        <h2 class="hero-subtitle">
+          I'm a <span class="typing-text text-gradient">{{ currentRoleText() }}</span><span class="cursor">|</span>
+        </h2>
       </div>
 
+      <p class="hero-description mx-auto mb-5">
+        I bridge the gap between <strong style="color: var(--text-primary);">Software Quality</strong> and Modern Development.
+        Building clean, efficient systems with .NET, Angular, and TypeScript.
+      </p>
+
+      <!-- Glass Actions -->
+      <div class="hero-actions">
+        <a class="glass-button primary-action" (click)="scrollToSection('projects')">
+          View Projects <i class="bi bi-arrow-down-short"></i>
+        </a>
+        <a class="glass-button secondary-action" (click)="scrollToSection('contact')">
+          Contact Me
+        </a>
+      </div>
+      
     </div>
-
+    
   </div>
-
-
-
-  <!-- Decorative Elements -->
-
-  <div class="hero-decoration">
-
-    <div class="decoration-circle circle-1"></div>
-
-    <div class="decoration-circle circle-2"></div>
-
-    <div class="decoration-circle circle-3"></div>
-
-  </div>
-
-
-
-</section>
+</div>

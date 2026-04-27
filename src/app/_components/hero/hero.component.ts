@@ -52,27 +52,50 @@ export class HeroComponent implements OnInit, OnDestroy {
     { value: '80%', label: 'Code Quality', icon: 'bi-shield-check' },
   ];
 
+  
+  currentRoleText = signal('');
+  private isDeleting = false;
+  private roleIndex = 0;
+  private typingTimeout: any;
+
   // Mouse position for parallax effect
   mouseX = signal(0);
   mouseY = signal(0);
 
   ngOnInit() {
-    // Start role rotation
-    this.startRoleRotation();
+    this.typeRole();
   }
 
   ngOnDestroy() {
-    if (this.roleInterval) {
-      clearInterval(this.roleInterval);
+    if (this.typingTimeout) {
+      clearTimeout(this.typingTimeout);
     }
   }
 
-  startRoleRotation() {
-    this.roleInterval = window.setInterval(() => {
-      const nextIndex = (this.currentRoleIndex() + 1) % this.roles.length;
-      this.currentRoleIndex.set(nextIndex);
-      this.currentRole.set(this.roles[nextIndex]);
-    }, 3000);
+  typeRole() {
+    const currentFullText = this.roles[this.roleIndex];
+    const currentLength = this.currentRoleText().length;
+
+    if (this.isDeleting) {
+      this.currentRoleText.set(currentFullText.substring(0, currentLength - 1));
+    } else {
+      this.currentRoleText.set(currentFullText.substring(0, currentLength + 1));
+    }
+
+    let typeSpeed = this.isDeleting ? 40 : 100;
+
+    if (!this.isDeleting && this.currentRoleText() === currentFullText) {
+      // Pause at the end of the word
+      typeSpeed = 2500; 
+      this.isDeleting = true;
+    } else if (this.isDeleting && this.currentRoleText() === '') {
+      // Move to next word
+      this.isDeleting = false;
+      this.roleIndex = (this.roleIndex + 1) % this.roles.length;
+      typeSpeed = 500; 
+    }
+
+    this.typingTimeout = setTimeout(() => this.typeRole(), typeSpeed);
   }
 
   scrollTo(sectionId: string) {
@@ -85,6 +108,13 @@ export class HeroComponent implements OnInit, OnDestroy {
     this.mouseX.set(x);
     this.mouseY.set(y);
   }
+
+  scrollToSection(sectionId: string) {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
 
   downloadCV() {
     // For now just open email client since no CV exists

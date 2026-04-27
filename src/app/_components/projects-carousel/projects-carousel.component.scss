@@ -1,119 +1,120 @@
-/* projects.component.scss */
+.section-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 0;
+  letter-spacing: -0.03em;
+}
 
-.projects-section {
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  /* السكرول الـ Snap والسنترة الـ Global هتقوم بالباقي */
+.section-description {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 600px;
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  margin-bottom: 20px; /* مساحة للـ Pagination في الموبايل */
-  min-height: 500px; 
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    transform: translateY(-10px);
-    border-color: #3b82f6;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  }
-}
-
-/* Add to your existing projects.component.scss */
-swiper-container {
-  width: 100%;
-  height: auto;
-  padding: 20px 0 40px; // Extra space for pagination
+  transition: transform 0.4s ease, border-color 0.4s ease;
   
-  ::ng-deep {
-    .swiper-slide {
-      display: flex;
-      align-items: stretch;
-      height: auto;
-    }
-    
-    .swiper-pagination {
-      bottom: 0;
-    }
+  &:hover {
+    transform: translateY(-5px);
+    border-color: var(--glass-glow);
   }
 }
 
-.card-img-wrapper {
+.project-preview {
   height: 220px;
   position: relative;
   overflow: hidden;
-
-  @media (max-width: 768px) {
-    height: 180px;
-  }
-
-  .project-screenshot {
+  
+  .project-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 2;
-    position: relative;
+    transition: transform 0.6s ease;
+    opacity: 0.8;
   }
 
-  .fallback-overlay {
+  &::after {
+    content: '';
     position: absolute;
     inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.5;
-    z-index: 1;
-
-    i { font-size: 3.5rem; color: white; }
-    .year-label { font-weight: 700; color: white; margin-top: 10px; }
+    background: linear-gradient(to bottom, transparent, rgba(9, 9, 11, 0.9));
   }
 }
 
-.card-body {
-  padding: 25px;
-  flex: 1;
-
-  .project-desc {
-    color: #94a3b8;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* يمنع الكارت إنه يطول بزيادة في الموبايل */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+.project-card:hover .project-image {
+  transform: scale(1.05);
+  opacity: 1;
 }
 
-.tech-badge {
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  color: #60a5fa;
-  padding: 4px 12px;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 600;
+.category-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+  border-radius: 8px !important;
 }
 
-.btn {
-  border-radius: 12px;
-  padding: 10px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: 0.3s;
+.overlay-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
+  opacity: 0;
+  transition: all 0.4s ease;
+
+  i {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+  }
+}
+
+.project-card:hover .overlay-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.project-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
+}
 
-  &-github { background: rgba(255, 255, 255, 0.05); color: white; border: 1px solid rgba(255, 255, 255, 0.1); }
-  &-demo { background: #3b82f6; color: white; border: none; }
-  &-disabled { background: rgba(100, 116, 139, 0.2); color: #64748b; border: none; }
+.tech-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-1);
+  background: rgba(59, 130, 246, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
 
-  &:hover:not(:disabled) { transform: scale(1.05); }
+.glass-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  
+  &:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
