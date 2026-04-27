@@ -13,7 +13,7 @@ export interface ProjectLink {
 
 export interface ProjectItem {
   id: string;
-  title: string;
+  title: string; 
   category: string;
   description: string;
   image: string;
