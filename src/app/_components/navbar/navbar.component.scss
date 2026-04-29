@@ -31,29 +31,118 @@
 }
 
 .nav-link {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-weight: 500;
   font-size: 0.95rem;
-  margin: 0 10px;
+  margin: 0 6px;
   cursor: pointer;
-  transition: color 0.3s ease;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 8px 18px;
+  border-radius: 50px;
+  
+  /* Permanent innovative shimmering glass effect */
+  background: linear-gradient(120deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.02) 100%);
+  background-size: 200% 100%;
+  animation: shimmer-bg 4s linear infinite;
+  border: 1px solid rgba(255,255,255,0.05);
 
   &:hover, &.active {
-    color: var(--text-primary);
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+    color: #fff;
   }
 }
 
+@keyframes shimmer-bg {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 .contact-btn-pro {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--glass-border);
-  color: var(--text-primary);
+  position: relative;
   border-radius: 50px;
-  padding: 8px 24px !important;
-  transition: all 0.3s ease;
+  padding: 10px 32px !important;
+  margin-left: 15px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  z-index: 1;
+  border: none !important;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: transparent;
+  
+  /* A permanent, very noticeable bouncing & glowing animation */
+  animation: call-to-action-pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+  /* Vibrant, shifting background gradient */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 300%; height: 100%;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6, #ec4899);
+    background-size: 50% 100%;
+    animation: fast-gradient 3s linear infinite;
+    z-index: -2;
+  }
+
+  /* Sweeping light flare effect */
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -30%;
+    width: 20%; height: 200%;
+    background: rgba(255, 255, 255, 0.8);
+    transform: rotate(25deg);
+    animation: sweeping-flare 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    z-index: -1;
+    filter: blur(3px);
+  }
+
+  span {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--glass-glow);
-    transform: translateY(-2px);
+    animation: none; /* Stop pulsing on hover so user can click steadily */
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.8), 0 0 25px rgba(59, 130, 246, 0.8);
+    
+    &::after {
+      animation: sweeping-flare 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; /* Fast flare */
+    }
   }
+}
+
+@keyframes call-to-action-pulse {
+  0% { 
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.5), 0 0 20px rgba(59, 130, 246, 0.4);
+  }
+  50% { 
+    transform: scale(1.08); /* Bounces larger */
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.9), 0 0 40px rgba(59, 130, 246, 0.8);
+  }
+  100% { 
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.5), 0 0 20px rgba(59, 130, 246, 0.4);
+  }
+}
+
+@keyframes fast-gradient {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@keyframes sweeping-flare {
+  0% { left: -50%; }
+  15% { left: 150%; } /* Sweeps across quickly */
+  100% { left: 150%; } /* Pauses for the rest of the animation */
 }
