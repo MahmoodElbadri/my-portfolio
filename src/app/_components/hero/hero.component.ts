@@ -27,9 +27,10 @@ export class HeroComponent implements OnInit, OnDestroy {
   // Dynamic text rotation
   roles = [
     'Full Stack Developer',
-    'Quality Engineer',
-    '.NET Specialist',
-    'Angular Expert',
+    'Backend Developer',
+    'Frontend Developer',
+    'Web Developer',
+    'Software Engineer',
   ];
   currentRoleIndex = signal(0);
   currentRole = signal(this.roles[0]);
@@ -48,7 +49,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   // Stats
   stats = [
     { value: '1+', label: 'Years Experience', icon: 'bi-briefcase' }, // Updated based on GitHub info
-    { value: '4+', label: 'Projects Built', icon: 'bi-code-slash' }, // Updated based on GitHub info
+    { value: '6+', label: 'Projects Built', icon: 'bi-code-slash' }, // Updated based on GitHub info
     { value: '80%', label: 'Code Quality', icon: 'bi-shield-check' },
   ];
 

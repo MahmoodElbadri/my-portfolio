@@ -86,12 +86,12 @@ export class SkillsComponent implements OnInit {
 
   // Tools & Technologies
   tools = [
-    { name: 'Git', icon: 'bi-git', color: '#F05032' },
-    { name: 'Azure', icon: 'bi-cloud', color: '#0089D6' },
-    { name: 'VS Code', icon: 'bi-code-square', color: '#007ACC' },
-    { name: 'Postman', icon: 'bi-send', color: '#FF6C37' },
-    { name: 'Swagger', icon: 'bi-book', color: '#85EA2D' },
-    // { name: 'Docker', icon: 'bi-box', color: '#2496ED' }
+    { name: 'Git', icon: 'fa-git', color: '#F05032' },
+    { name: 'Azure', icon: 'fa-azure', color: '#0089D6' },
+    { name: 'VS Code', icon: 'fa-vscode', color: '#007ACC' },
+    { name: 'Postman', icon: 'fa-send', color: '#FF6C37' },
+    { name: 'Swagger', icon: 'fa-book', color: '#85EA2D' },
+    { name: 'Docker', icon: 'fa-box', color: '#2496ED' }
   ];
 
   // Stats

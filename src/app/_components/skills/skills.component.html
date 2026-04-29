@@ -84,7 +84,7 @@
       <div class="d-flex flex-wrap justify-content-center gap-3">
         @for (tool of tools; track tool.name) {
           <div class="glass-badge d-flex align-items-center px-4 py-2" [style.borderColor]="tool.color + '40'">
-            <i [class]="'bi ' + tool.icon + ' me-2 fs-5'" [style.color]="tool.color"></i>
+            <i [class]="'fa ' + tool.icon + ' me-2 fs-5'" [style.color]="tool.color"></i>
             <span class="text-white">{{ tool.name }}</span>
           </div>
         }
