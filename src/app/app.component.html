@@ -12,14 +12,30 @@
     <app-hero />
   </section>
    <section id="projects">
-    <app-projects-carousel />
+    @defer (on viewport) {
+      <app-projects-carousel />
+    } @placeholder {
+      <div style="min-height: 500px;"></div>
+    }
   </section> 
   <section id="skills">
-    <app-skills />
+    @defer (on viewport) {
+      <app-skills />
+    } @placeholder {
+      <div style="min-height: 500px;"></div>
+    }
   </section>
   <section id="contact">
-    <app-contacts />
+    @defer (on viewport) {
+      <app-contacts />
+    } @placeholder {
+      <div style="min-height: 500px;"></div>
+    }
   </section>
 </main>
 <app-custom-cursor />
-<app-footer />
+@defer (on viewport) {
+  <app-footer />
+} @placeholder {
+  <div style="min-height: 100px;"></div>
+}
