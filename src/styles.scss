@@ -1,7 +1,7 @@
-@import 'swiper/css';
-@import 'swiper/css/navigation';
-@import 'swiper/css/pagination';
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
 
 :root {
   --bg-color: #09090b; /* Zinc 950 */
@@ -24,15 +24,20 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   min-height: 100vh;
 }
 
 /* Headings use Outfit for a modern look */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Outfit", sans-serif;
 }
 
 section {
@@ -41,8 +46,8 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;    
-  padding: 100px 0;      
+  align-items: center;
+  padding: 100px 0;
   position: relative;
   overflow: hidden;
   z-index: 2;
@@ -107,10 +112,18 @@ body {
 }
 
 @keyframes float-aurora {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(10%, 15%) scale(1.1); }
-  66% { transform: translate(-5%, 10%) scale(0.9); }
-  100% { transform: translate(-15%, -10%) scale(1.05); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(10%, 15%) scale(1.1);
+  }
+  66% {
+    transform: translate(-5%, 10%) scale(0.9);
+  }
+  100% {
+    transform: translate(-15%, -10%) scale(1.05);
+  }
 }
 
 /* Background Noise overlay for premium texture */
@@ -192,7 +205,11 @@ body {
    Typography Utilities
    ============================================ */
 .text-gradient {
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--text-primary) 0%,
+    var(--text-secondary) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

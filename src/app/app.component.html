@@ -11,31 +11,31 @@
   <section id="home">
     <app-hero />
   </section>
-   <section id="projects">
+  <section id="projects">
     @defer (on viewport) {
-      <app-projects-carousel />
+    <app-projects-carousel />
     } @placeholder {
-      <div style="min-height: 500px;"></div>
+    <div style="min-height: 500px;"></div>
     }
-  </section> 
+  </section>
   <section id="skills">
     @defer (on viewport) {
-      <app-skills />
+    <app-skills />
     } @placeholder {
-      <div style="min-height: 500px;"></div>
+    <div style="min-height: 500px;"></div>
     }
   </section>
   <section id="contact">
     @defer (on viewport) {
-      <app-contacts />
+    <app-contacts />
     } @placeholder {
-      <div style="min-height: 500px;"></div>
+    <div style="min-height: 500px;"></div>
     }
   </section>
 </main>
 <app-custom-cursor />
 @defer (on viewport) {
-  <app-footer />
+<app-footer />
 } @placeholder {
-  <div style="min-height: 100px;"></div>
+<div style="min-height: 100px;"></div>
 }

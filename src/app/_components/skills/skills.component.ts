@@ -86,20 +86,22 @@ export class SkillsComponent implements OnInit {
 
   // Tools & Technologies
   tools = [
-    { name: 'Git', icon: 'fa-git', color: '#F05032' },
-    { name: 'Azure', icon: 'fa-azure', color: '#0089D6' },
-    { name: 'VS Code', icon: 'fa-vscode', color: '#007ACC' },
-    { name: 'Postman', icon: 'fa-send', color: '#FF6C37' },
-    { name: 'Swagger', icon: 'fa-book', color: '#85EA2D' },
-    { name: 'Docker', icon: 'fa-box', color: '#2496ED' }
+    // we will use fa-brands for icons
+    { name: 'Git', icon: 'fa-brands fa-git', color: '#F05032' },
+    { name: 'Azure', icon: 'fab fa-microsoft', color: '#0089D6' },
+    { name: 'VS Code', icon: 'fa-solid fa-code', color: '#007ACC' },
+    { name: 'GitHub', icon: 'fab fa-github', color: '#007ACC' },
+    { name: 'Trello', icon: 'fab fa-trello', color: '#007ACC' },
+
   ];
 
   // Stats
   stats = [
-    // { label: 'Technologies Mastered', value: '15+', icon: 'bi-stack' },
+    
+    { label: 'Technologies Mastered', value: '15+', icon: 'bi-layers' },
     { label: 'Years of Experience', value: '1+', icon: 'bi-calendar-check' },
-    { label: 'Projects Completed', value: '4+', icon: 'bi-award' },
-    { label: 'Happy Clients', value: '3+', icon: 'bi-people' }
+    { label: 'Projects Completed', value: '6+', icon: 'bi-award' },
+    { label: 'Happy Clients', value: '3+', icon: 'bi-people-fill' }
   ];
 
   // Active category for filtering
