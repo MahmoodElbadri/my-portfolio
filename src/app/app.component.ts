@@ -9,6 +9,7 @@ import { SkillsComponent } from './_components/skills/skills.component';
 import { ContactsComponent } from './_components/contacts/contacts.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { CursorComponent } from './_components/cursor/cursor.component';
+import { ParticleWebComponent } from './_components/particle-web/particle-web.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { CursorComponent } from './_components/cursor/cursor.component';
     ContactsComponent,
     FooterComponent,
     CursorComponent,
+    ParticleWebComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'], // Ensure this matches your file name (.scss or .css)
