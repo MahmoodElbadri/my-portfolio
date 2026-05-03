@@ -1,42 +1,52 @@
 <app-navbar />
-<!-- Global Aurora Background -->
+
 <div class="global-aurora-bg">
   <div class="aurora-orb aurora-orb-1"></div>
   <div class="aurora-orb aurora-orb-2"></div>
   <div class="aurora-orb aurora-orb-3"></div>
 </div>
-<app-particle-web />
+
+<!-- تحميل بعد ما الصفحة تخلص -->
+@defer (on idle) {
+  <app-particle-web />
+}
 
 <main>
-
   <section id="home">
     <app-hero />
   </section>
+
   <section id="projects">
     @defer (on viewport) {
-    <app-projects-carousel />
+      <app-projects-carousel />
     } @placeholder {
-    <div style="min-height: 500px;"></div>
+      <div style="min-height: 600px; width: 100%;"></div>
     }
   </section>
+
   <section id="skills">
     @defer (on viewport) {
-    <app-skills />
+      <app-skills />
     } @placeholder {
-    <div style="min-height: 500px;"></div>
+      <div style="min-height: 600px; width: 100%;"></div>
     }
   </section>
+
   <section id="contact">
     @defer (on viewport) {
-    <app-contacts />
+      <app-contacts />
     } @placeholder {
-    <div style="min-height: 500px;"></div>
+      <div style="min-height: 500px; width: 100%;"></div>
     }
   </section>
 </main>
-<app-custom-cursor />
+
+@defer (on idle) {
+  <app-custom-cursor />
+}
+
 @defer (on viewport) {
-<app-footer />
+  <app-footer />
 } @placeholder {
-<div style="min-height: 100px;"></div>
+  <div style="min-height: 100px;"></div>
 }
