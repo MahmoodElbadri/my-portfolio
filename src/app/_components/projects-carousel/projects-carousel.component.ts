@@ -3,6 +3,7 @@ import {
   Component
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import Swiper from 'swiper';
 
 export interface ProjectLink {
   label: string;
@@ -32,6 +33,7 @@ export interface ProjectItem {
 })
 export class ProjectsCarouselComponent {
   
+  private swiper: typeof Swiper.prototype | null = null;
   projects: ProjectItem[] = [
     {
       id: '01',
