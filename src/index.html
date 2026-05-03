@@ -7,19 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <!-- Preconnect عشان يسرع الاتصال -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <!-- preconnect بس من غير preload -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
-  <!-- Bootstrap CSS — preload -->
-  <link rel="preload" as="style" 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 
-  <!-- Bootstrap Icons فقط — شيل Font Awesome -->
-  <link rel="preload" as="style"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Bootstrap Icons فقط — بدون Font Awesome -->
   <link rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 </head>
@@ -33,8 +28,9 @@
     <textarea name="message"></textarea>
   </form>
 
-  <!-- Bootstrap JS في الآخر بدون Swiper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    defer crossorigin="anonymous"></script>
+  <!-- JS في الآخر مع defer -->
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
 </body>
 </html>
