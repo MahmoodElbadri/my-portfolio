@@ -37,6 +37,31 @@ export class ProjectsCarouselComponent {
   projects: ProjectItem[] = [
     {
       id: '01',
+      title: 'FixRTL (RTL Text Fixer)',
+      category: 'Web App / Tool',
+      description: 'An elegant online tool built to fix Right-to-Left (RTL) Arabic text display and layout issues in design, video editing, and development software.',
+      image: 'assets/fixrtl.png',
+      icon: 'bi-paragraph',
+      tags: ['RTL Fixer', 'JavaScript', 'CSS', 'Tailwind'],
+      links: [
+        { label: 'Website', url: 'https://fixrtl.netlify.app/text-fixer', icon: 'bi-globe' }
+      ]
+    },
+    {
+      id: '02',
+      title: 'Wazakker (وذكر) Extension',
+      category: 'Browser Extension',
+      description: 'A lightweight and elegant Islamic browser extension displaying periodic Athkar, Islamic reminders, and daily Quranic verses directly in your browser.',
+      image: 'assets/wazakker.png',
+      icon: 'bi-moon-stars',
+      tags: ['Extension', 'JavaScript', 'Firefox', 'Edge'],
+      links: [
+        { label: 'Firefox Add-on', url: 'https://addons.mozilla.org/en-US/firefox/addon/wazakker/', icon: 'bi-firefox' },
+        { label: 'Edge Add-on', url: 'https://microsoftedge.microsoft.com/addons/detail/%D9%88%D8%B0%D9%83%D8%B1-wazakker/hbceonohjkkglehomcbbndnfgdkceeon', icon: 'bi-microsoft' }
+      ]
+    },
+    {
+      id: '03',
       title: 'Clinic.Api (Doctor Booking)',
       category: 'Backend API',
       description: 'A robust, scalable RESTful API built with .NET Core. Features include secure JWT auth, role-based access control, appointment management, and real-time notifications via SignalR.',
@@ -48,7 +73,7 @@ export class ProjectsCarouselComponent {
       ]
     },
     {
-      id: '02',
+      id: '04',
       title: 'CareSync Frontend',
       category: 'Web App',
       description: 'A modern, responsive SPA built with Angular. Serves as the interactive dashboard for doctors to manage schedules and receive real-time WebSockets updates.',
@@ -60,7 +85,7 @@ export class ProjectsCarouselComponent {
       ]
     },
     {
-      id: '03',
+      id: '05',
       title: 'Expense Tracker API',
       category: 'Backend API',
       description: 'A secure RESTful API built with .NET 8 following Clean Architecture. Manages finances, tracks expenses, and automates recurring bills using Hangfire background jobs.',
@@ -72,7 +97,7 @@ export class ProjectsCarouselComponent {
       ]
     },
     {
-      id: '04',
+      id: '06',
       title: 'Expense Tracker Client',
       category: 'Web App',
       description: 'A fast, reactive SPA built with Angular 17/18 using Signals for state management. Features an interactive financial dashboard, smart interceptors, and a Glassmorphism UI.',
@@ -84,7 +109,7 @@ export class ProjectsCarouselComponent {
       ]
     },
     {
-      id: '05',
+      id: '07',
       title: 'CineTrack Analytics',
       category: 'Web App',
       description: 'A dynamic movie tracking app consuming the TMDB API. Provides rich analytics on viewing habits, personalized watchlists, and a comprehensive search engine. since the camera was invented 😎😎😎',
@@ -96,7 +121,7 @@ export class ProjectsCarouselComponent {
       ]
     },
     {
-      id: '06',
+      id: '08',
       title: 'Premium POS System',
       category: 'Enterprise',
       description: 'A commercial-grade Point of Sale (POS) system built for a private client. Features advanced inventory management, real-time sales tracking, and a responsive touch interface.',

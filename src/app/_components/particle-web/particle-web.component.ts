@@ -1,53 +1,69 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, NgZone, OnDestroy, HostListener, ChangeDetectionStrategy } from '@angular/core';
 
-class Particle {
-  constructor(
-    public x: number,
-    public y: number,
-    public dirX: number,
-    public dirY: number,
-    public size: number,
-    public color: string
-  ) {}
+class Spark {
+  public x: number;
+  public y: number;
+  public dirX: number;
+  public dirY: number;
+  public size: number;
+  public color: string;
+  public alpha: number = 1.0;
+  public decay: number;
+
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+
+    // Spark starburst vectors
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 4 + 2.5;
+    this.dirX = Math.cos(angle) * speed;
+    this.dirY = Math.sin(angle) * speed;
+
+    this.size = Math.random() * 3 + 2.2;
+
+    // Glowing cyber neon colors
+    const colors = [
+      'rgba(6, 182, 212, ALPHA)',  // Cyber Cyan
+      'rgba(236, 72, 153, ALPHA)', // Hot Pink
+      'rgba(168, 85, 247, ALPHA)', // Neon Violet
+      'rgba(250, 204, 21, ALPHA)'  // Twinkling Gold
+    ];
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.decay = Math.random() * 0.02 + 0.018;
+  }
 
   draw(ctx: CanvasRenderingContext2D) {
+    ctx.save();
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = this.color.replace('ALPHA', this.alpha.toFixed(2));
+
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = this.color.replace('ALPHA', '0.9');
+
     ctx.fill();
+    ctx.restore();
   }
 
-  update(mouse: {x: number, y: number, radius: number}) {
-    if (this.x > window.innerWidth || this.x < 0) {
-      this.dirX = -this.dirX;
-    }
-    if (this.y > window.innerHeight || this.y < 0) {
-      this.dirY = -this.dirY;
-    }
+  update() {
+    this.x += this.dirX;
+    this.y += this.dirY;
 
-    // Mouse interactivity: push particles away slightly
-    let dx = mouse.x - this.x;
-    let dy = mouse.y - this.y;
-    let distance = Math.sqrt(dx*dx + dy*dy);
-    
-    if (distance < mouse.radius + this.size) {
-      if (mouse.x < this.x && this.x < window.innerWidth - this.size * 10) {
-        this.x += 1.5;
-      }
-      if (mouse.x > this.x && this.x > this.size * 10) {
-        this.x -= 1.5;
-      }
-      if (mouse.y < this.y && this.y < window.innerHeight - this.size * 10) {
-        this.y += 1.5;
-      }
-      if (mouse.y > this.y && this.y > this.size * 10) {
-        this.y -= 1.5;
-      }
-    }
+    // Soft air drag & gravity pull
+    this.dirX *= 0.97;
+    this.dirY *= 0.97;
+    this.dirY += 0.06; // subtle gravity
 
-    this.x += this.dirX * 0.5;
-    this.y += this.dirY * 0.5;
+    this.alpha -= this.decay;
   }
+}
+
+interface GridPoint {
+  x: number;
+  y: number;
+  baseX: number;
+  baseY: number;
 }
 
 @Component({
@@ -61,19 +77,20 @@ class Particle {
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 1; /* Above the aurora background but below everything else */
-      pointer-events: none; /* Let clicks pass through */
+      z-index: 1; /* Under cursor outline but above aurora background */
+      pointer-events: none; /* Ignore click blockages */
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ParticleWebComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
-  
+
   private ctx!: CanvasRenderingContext2D;
-  private particles: Particle[] = [];
+  private gridPoints: GridPoint[] = [];
+  private sparks: Spark[] = [];
   private animationFrameId: number = 0;
-  private mouse = { x: -1000, y: -1000, radius: 150 };
+  private mouse = { x: -1000, y: -1000 };
 
   constructor(private ngZone: NgZone) {}
 
@@ -92,14 +109,22 @@ export class ParticleWebComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:resize')
   onResize() {
     this.setCanvasSize();
-    this.initParticles();
+    this.initGrid();
+  }
+
+  @HostListener('window:mousedown', ['$event'])
+  onWindowClick(event: MouseEvent) {
+    // Spectacular starburst explosion on mouse clicks
+    for (let i = 0; i < 28; i++) {
+      this.sparks.push(new Spark(event.clientX, event.clientY));
+    }
   }
 
   ngAfterViewInit() {
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext('2d')!;
     this.setCanvasSize();
-    this.initParticles();
+    this.initGrid();
 
     this.ngZone.runOutsideAngular(() => {
       this.animate();
@@ -116,63 +141,130 @@ export class ParticleWebComponent implements AfterViewInit, OnDestroy {
     canvas.height = window.innerHeight;
   }
 
-  private initParticles() {
-    this.particles = [];
-    const numberOfParticles = (window.innerWidth * window.innerHeight) / 10000;
-    for (let i = 0; i < numberOfParticles; i++) {
-      const size = (Math.random() * 2) + 1;
-      const x = (Math.random() * ((window.innerWidth - size * 2) - (size * 2)) + size * 2);
-      const y = (Math.random() * ((window.innerHeight - size * 2) - (size * 2)) + size * 2);
-      const dirX = (Math.random() * 2) - 1;
-      const dirY = (Math.random() * 2) - 1;
-      const color = 'rgba(59, 130, 246, 0.8)'; // Blueish
+  private initGrid() {
+    this.gridPoints = [];
+    const spacing = 45; // grid cell density
+    const cols = Math.ceil(window.innerWidth / spacing) + 2;
+    const rows = Math.ceil(window.innerHeight / spacing) + 2;
 
-      this.particles.push(new Particle(x, y, dirX, dirY, size, color));
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = (c - 0.5) * spacing;
+        const y = (r - 0.5) * spacing;
+        this.gridPoints.push({
+          x,
+          y,
+          baseX: x,
+          baseY: y
+        });
+      }
     }
   }
 
   private animate = () => {
     this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    for (let i = 0; i < this.particles.length; i++) {
-      this.particles[i].update(this.mouse);
-      this.particles[i].draw(this.ctx);
-    }
-    this.connect();
-    this.animationFrameId = requestAnimationFrame(this.animate);
-  }
 
-  private connect() {
-    let opacityValue = 1;
-    for (let a = 0; a < this.particles.length; a++) {
-      // Connect particles to each other
-      for (let b = a; b < this.particles.length; b++) {
-        let distance = ((this.particles[a].x - this.particles[b].x) * (this.particles[a].x - this.particles[b].x))
-                     + ((this.particles[a].y - this.particles[b].y) * (this.particles[a].y - this.particles[b].y));
-        if (distance < 12000) {
-          opacityValue = 1 - (distance / 12000);
-          this.ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.4})`; // Violet web
-          this.ctx.lineWidth = 1;
+    const radius = 220; // mouse gravity influence radius
+    const spacing = 45;
+    const cols = Math.ceil(window.innerWidth / spacing) + 2;
+    const rows = Math.ceil(window.innerHeight / spacing) + 2;
+
+    // 1. Spacetime gravity grid warp physics
+    for (let i = 0; i < this.gridPoints.length; i++) {
+      const pt = this.gridPoints[i];
+      if (this.mouse.x !== -1000) {
+        const dx = this.mouse.x - pt.baseX;
+        const dy = this.mouse.y - pt.baseY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < radius) {
+          const force = (radius - distance) / radius;
+          const angle = Math.atan2(dy, dx);
+          // Pull spacetime coordinate points towards mouse
+          const warp = force * 38;
+          pt.x = pt.baseX + Math.cos(angle) * warp;
+          pt.y = pt.baseY + Math.sin(angle) * warp;
+        } else {
+          pt.x += (pt.baseX - pt.x) * 0.12;
+          pt.y += (pt.baseY - pt.y) * 0.12;
+        }
+      } else {
+        pt.x += (pt.baseX - pt.x) * 0.12;
+        pt.y += (pt.baseY - pt.y) * 0.12;
+      }
+    }
+
+    // 2. Draw horizontal warp lines
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols - 1; c++) {
+        const idxA = r * cols + c;
+        const idxB = r * cols + (c + 1);
+        if (idxA < this.gridPoints.length && idxB < this.gridPoints.length) {
+          const ptA = this.gridPoints[idxA];
+          const ptB = this.gridPoints[idxB];
+
+          const avgX = (ptA.x + ptB.x) / 2;
+          const avgY = (ptA.y + ptB.y) / 2;
+          const mouseDist = this.mouse.x !== -1000 ? Math.sqrt((avgX - this.mouse.x) * (avgX - this.mouse.x) + (avgY - this.mouse.y) * (avgY - this.mouse.y)) : 1000;
+
+          if (mouseDist < radius) {
+            const glow = (radius - mouseDist) / radius;
+            this.ctx.strokeStyle = `rgba(6, 182, 212, ${0.12 + glow * 0.44})`; // Glowing cyan on warp
+            this.ctx.lineWidth = 0.65 + glow * 0.75;
+          } else {
+            this.ctx.strokeStyle = 'rgba(168, 85, 247, 0.11)'; // default soft resting purple
+            this.ctx.lineWidth = 0.65;
+          }
+
           this.ctx.beginPath();
-          this.ctx.moveTo(this.particles[a].x, this.particles[a].y);
-          this.ctx.lineTo(this.particles[b].x, this.particles[b].y);
+          this.ctx.moveTo(ptA.x, ptA.y);
+          this.ctx.lineTo(ptB.x, ptB.y);
           this.ctx.stroke();
         }
       }
-      // Connect particles to mouse
-      if (this.mouse.x !== -1000) {
-        let mouseDist = ((this.particles[a].x - this.mouse.x) * (this.particles[a].x - this.mouse.x))
-                      + ((this.particles[a].y - this.mouse.y) * (this.particles[a].y - this.mouse.y));
-        if (mouseDist < 25000) { // Link distance to mouse
-           opacityValue = 1 - (mouseDist / 25000);
-           this.ctx.strokeStyle = `rgba(59, 130, 246, ${opacityValue * 0.8})`; // Blue stronger line to mouse
-           this.ctx.lineWidth = 1.2;
-           this.ctx.beginPath();
-           this.ctx.moveTo(this.particles[a].x, this.particles[a].y);
-           this.ctx.lineTo(this.mouse.x, this.mouse.y);
-           this.ctx.stroke();
+    }
+
+    // 3. Draw vertical warp lines
+    for (let c = 0; c < cols; c++) {
+      for (let r = 0; r < rows - 1; r++) {
+        const idxA = r * cols + c;
+        const idxB = (r + 1) * cols + c;
+        if (idxA < this.gridPoints.length && idxB < this.gridPoints.length) {
+          const ptA = this.gridPoints[idxA];
+          const ptB = this.gridPoints[idxB];
+
+          const avgX = (ptA.x + ptB.x) / 2;
+          const avgY = (ptA.y + ptB.y) / 2;
+          const mouseDist = this.mouse.x !== -1000 ? Math.sqrt((avgX - this.mouse.x) * (avgX - this.mouse.x) + (avgY - this.mouse.y) * (avgY - this.mouse.y)) : 1000;
+
+          if (mouseDist < radius) {
+            const glow = (radius - mouseDist) / radius;
+            this.ctx.strokeStyle = `rgba(6, 182, 212, ${0.12 + glow * 0.44})`;
+            this.ctx.lineWidth = 0.65 + glow * 0.75;
+          } else {
+            this.ctx.strokeStyle = 'rgba(168, 85, 247, 0.11)';
+            this.ctx.lineWidth = 0.65;
+          }
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(ptA.x, ptA.y);
+          this.ctx.lineTo(ptB.x, ptB.y);
+          this.ctx.stroke();
         }
       }
     }
-  }
+
+    // 4. Draw click sparks
+    for (let i = this.sparks.length - 1; i >= 0; i--) {
+      this.sparks[i].update();
+      if (this.sparks[i].alpha <= 0) {
+        this.sparks.splice(i, 1);
+      } else {
+        this.sparks[i].draw(this.ctx);
+      }
+    }
+
+    this.animationFrameId = requestAnimationFrame(this.animate);
+  };
 }
         

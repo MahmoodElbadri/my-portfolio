@@ -41,37 +41,78 @@
 }
 
 // ============================================
-// Cursor Outline (Outer Circle)
+// Cursor Outline - Outer (Cyan / Slow Spring)
 // ============================================
-.cursor-outline {
+.cursor-outline.outer {
   position: fixed;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(59, 130, 246, 0.5);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 10000;
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-  background: rgba(59, 130, 246, 0.05);
-  backdrop-filter: blur(5px);
+  border: 1.5px solid rgba(6, 182, 212, 0.5); /* Neon Cyber Cyan border */
+  background: rgba(6, 182, 212, 0.02);
+  backdrop-filter: blur(1.5px);
+  box-shadow: 
+    0 0 14px rgba(6, 182, 212, 0.18),
+    inset 0 0 6px rgba(6, 182, 212, 0.05);
+  
+  // Transition ONLY stylistic changes, never layout parameters (handled by Spring JS)
+  transition: 
+    background-color 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+    border-color 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &.cursor-hover {
-    width: 70px;
-    height: 70px;
-    background: rgba(59, 130, 246, 0.1);
-    border-color: rgba(59, 130, 246, 0.8);
-    border-width: 3px;
-    animation: cursor-pulse 1.5s ease-in-out infinite;
-    
+    border-color: rgba(236, 72, 153, 0.7); /* Glowing Hot Pink snap */
+    background: rgba(236, 72, 153, 0.05);
+    border-width: 2px;
+    box-shadow: 
+      0 0 24px rgba(236, 72, 153, 0.4),
+      inset 0 0 10px rgba(236, 72, 153, 0.15);
   }
 
   &.cursor-clicked {
-    width: 35px;
-    height: 35px;
-    border-color: rgba(236, 72, 153, 0.8);
-    background: rgba(236, 72, 153, 0.15);
-    animation: cursor-click-wave 0.6s ease-out;
+    border-color: rgba(168, 85, 247, 0.85); /* Purple dynamic click glow */
+    background: rgba(168, 85, 247, 0.12);
+    box-shadow: 
+      0 0 30px rgba(168, 85, 247, 0.65),
+      inset 0 0 12px rgba(168, 85, 247, 0.25);
+  }
+}
+
+// ============================================
+// Cursor Outline - Inner (Pink / Snappy Spring)
+// ============================================
+.cursor-outline.inner {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  border: 1px dashed rgba(236, 72, 153, 0.45); /* Dashed neon pink ring */
+  background: rgba(236, 72, 153, 0.01);
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.1);
+  
+  // Transition ONLY stylistic changes, never layout parameters (handled by Spring JS)
+  transition: 
+    background-color 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+    border-color 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &.cursor-hover {
+    border-color: rgba(6, 182, 212, 0.75); /* Solid Cyan inside snapped element */
+    border-style: solid;
+    border-width: 1.5px;
+    background: rgba(6, 182, 212, 0.04);
+    box-shadow: 
+      0 0 18px rgba(6, 182, 212, 0.35),
+      inset 0 0 8px rgba(6, 182, 212, 0.1);
+  }
+
+  &.cursor-clicked {
+    border-color: rgba(250, 204, 21, 0.85); /* gold inner on click */
+    border-style: solid;
+    border-width: 1.5px;
+    background: rgba(250, 204, 21, 0.08);
+    box-shadow: 
+      0 0 20px rgba(250, 204, 21, 0.5),
+      inset 0 0 8px rgba(250, 204, 21, 0.15);
   }
 }
 
@@ -80,16 +121,11 @@
 // ============================================
 .cursor-trail {
   position: fixed;
-  width: 4px;
-  height: 4px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.6;
-  animation: trail-fade 0.6s ease-out forwards;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+  will-change: left, top, opacity, width, height;
 }
 
 // ============================================
